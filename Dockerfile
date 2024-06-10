@@ -2,7 +2,7 @@
 FROM node:14
 
 # Defina o diretório de trabalho dentro do contêiner
-WORKDIR /node_modules
+WORKDIR /index.js
 
 # Copie o arquivo package.json e package-lock.json (se existir)
 COPY package*.json ./
