@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 3000
 
 # Comando para iniciar o servidor quando o contêiner for iniciado
-CMD ["node", "app.js"]
+CMD ["node", "index.js"]
