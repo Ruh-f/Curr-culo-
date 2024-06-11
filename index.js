@@ -48,6 +48,11 @@ app.get('/curriculo', async (req, res) => {
     }
 });
 
+// Rota para a raiz do servidor
+app.get('/', (req, res) => {
+    res.send('Bem-vindo ao servidor!');
+});
+
 const server = app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`);
 });
