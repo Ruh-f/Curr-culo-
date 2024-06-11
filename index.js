@@ -1,4 +1,5 @@
 const express = require('express');
+const helmet = require('helmet');
 const { Pool } = require('pg');
 require('dotenv').config();  // Carrega variáveis de ambiente do arquivo .env
 
@@ -11,6 +12,17 @@ const pool = new Pool({
         rejectUnauthorized: false
     }
 });
+
+// Use o middleware helmet para adicionar cabeçalhos de segurança HTTP
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'", 'https://www.gstatic.com']
+      // Adicione outras diretivas conforme necessário
+    }
+  }
+}));
 
 app.use(express.json());
 
