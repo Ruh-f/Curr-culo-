@@ -1,5 +1,6 @@
 const express = require('express');
 const { Pool } = require('pg');
+require('dotenv').config();  // Carrega variáveis de ambiente do arquivo .env
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -35,6 +36,15 @@ app.get('/curriculo', async (req, res) => {
     }
 });
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`);
+});
+
+server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+        console.error(`Porta ${port} já está em uso. Tentando porta diferente...`);
+        server.listen(port + 1);
+    } else {
+        console.error('Erro no servidor:', err);
+    }
 });
