@@ -2,10 +2,10 @@ const express = require('express');
 const { Pool } = require('pg');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const pool = new Pool({
-    connectionString: 'postgres://kupewoaf:YodJgi19zsGFN90WmvD8DRJq4pUJmgYM@silly.db.elephantsql.com/kupewoaf',
+    connectionString: process.env.DATABASE_URL,
     ssl: {
         rejectUnauthorized: false
     }
